@@ -1,5 +1,5 @@
 %include	/usr/lib/rpm/macros.python
-%define 	module imdb
+%define 	module	imdb
 
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
 Summary(pl):	Pakiet Pythona do uzyskiwania i zarz±dzania danymi z bazy danych filmów IMDb
