@@ -41,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/*
-%dir %{py_sitedir}/%{module}
-%{py_sitedir}/%{module}/*.py[co]
-%{py_sitedir}/%{module}/parser/*.py[co]
-%{py_sitedir}/%{module}/parser/http/*.py[co]
+%dir %{py_sitescriptdir}/%{module}
+%{py_sitescriptdir}/%{module}/*.py[co]
+%{py_sitescriptdir}/%{module}/parser/*.py[co]
+%{py_sitescriptdir}/%{module}/parser/http/*.py[co]
