@@ -43,7 +43,7 @@ python setup.py build
 rm -rf $RPM_BUILD_ROOT
 
 python setup.py install \
-        --root=$RPM_BUILD_ROOT --optimize=2
+	--root=$RPM_BUILD_ROOT --optimize=2
 
 %clean
 rm -rf $RPM_BUILD_ROOT
