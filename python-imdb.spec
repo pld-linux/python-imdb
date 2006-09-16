@@ -3,12 +3,12 @@
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
 Summary(pl):	Pakiet Pythona do uzyskiwania i zarz±dzania danymi z bazy danych filmów IMDb
 Name:		python-%{module}
-Version:	1.3
+Version:	2.6
 Release:	1
 License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://dl.sourceforge.net/imdbpy/imdbpy-%{version}.tar.gz
-# Source0-md5:	ec2e0562bbb482596b62a4124f0dda11
+# Source0-md5:	a38388a4d73726ba3475439b49cad37b
 URL:		http://imdbpy.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,18 +42,32 @@ python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python setup.py install \
-	--root=$RPM_BUILD_ROOT --optimize=2
+%{__python} setup.py install \
+	--root=$RPM_BUILD_ROOT \
+	--optimize=2 \
+	--install-purelib=%{py_sitedir}
 
+find $RPM_BUILD_ROOT%{py_sitedir} -type f -name "*.py" | xargs rm
+	
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*
-%dir %{py_sitescriptdir}/%{module}
-%{py_sitescriptdir}/%{module}/*.py[co]
-%dir %{py_sitescriptdir}/%{module}/parser
-%{py_sitescriptdir}/%{module}/parser/*.py[co]
-%dir %{py_sitescriptdir}/%{module}/parser/http
-%{py_sitescriptdir}/%{module}/parser/http/*.py[co]
+%doc docs/AUTHOR.txt docs/CONTRIBUTORS.txt docs/CREDITS.txt docs/Changelog.txt docs/DISCLAIMER.txt docs/README.* docs/TODO.txt
+%attr(755,root,root) %{_bindir}/*
+%dir %{py_sitedir}/%{module}
+%{py_sitedir}/%{module}/*.py[co]
+%dir %{py_sitedir}/%{module}/parser
+%{py_sitedir}/%{module}/parser/*.py[co]
+%dir %{py_sitedir}/%{module}/parser/http
+%{py_sitedir}/%{module}/parser/http/*.py[co]
+%dir %{py_sitedir}/%{module}/parser/common
+%{py_sitedir}/%{module}/parser/common/*.py[co]
+%attr(755,root,root) %{py_sitedir}/%{module}/parser/common/cutils.so
+%dir %{py_sitedir}/%{module}/parser/local
+%{py_sitedir}/%{module}/parser/local/*.py[co]
+%dir %{py_sitedir}/%{module}/parser/mobile
+%{py_sitedir}/%{module}/parser/mobile/*.py[co]
+%dir %{py_sitedir}/%{module}/parser/sql
+%{py_sitedir}/%{module}/parser/sql/*.py[co]
