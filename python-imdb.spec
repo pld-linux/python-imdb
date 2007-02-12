@@ -1,7 +1,7 @@
 %define 	module	imdb
 
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
-Summary(pl):	Pakiet Pythona do uzyskiwania i zarz±dzania danymi z bazy danych filmów IMDb
+Summary(pl.UTF-8):   Pakiet Pythona do uzyskiwania i zarzÄ…dzania danymi z bazy danych filmÃ³w IMDb
 Name:		python-%{module}
 Version:	2.6
 Release:	1
@@ -22,16 +22,16 @@ database). IMDbPY is mainly intended for programmers and developers
 who want to build their Python programs using the IMDbPY package, but
 some example scripts - useful for simple users - are included.
 
-%description -l pl
-IMDbPY to pythonowy pakiet przydatny do uzyskiwania i zarz±dzania
-danymi z bazy danych filmów IMDb. Celem IMDbPY jest dostarczenie
-³atwego sposobu na dostêp do baz IMDb z poziomu skryptów Pythona. Jest
-niezale¿ny od platformy i napisany w czystym Pythonie, wiêc jest
-teoretycznie niezale¿ny od ¼ród³a danych (jako ¿e IMDb dostarcza dwa
-lub trzy ró¿ne interfejsy do ich bazy). IMDbPY jest przeznaczony
-g³ównie dla programistów chc±cych tworzyæ programy przy u¿yciu tego
-pakietu, ale za³±czonych jest tak¿e kilka przyk³adowych skryptów
-przydatnych dla zwyk³ych u¿ytkowników.
+%description -l pl.UTF-8
+IMDbPY to pythonowy pakiet przydatny do uzyskiwania i zarzÄ…dzania
+danymi z bazy danych filmÃ³w IMDb. Celem IMDbPY jest dostarczenie
+Å‚atwego sposobu na dostÄ™p do baz IMDb z poziomu skryptÃ³w Pythona. Jest
+niezaleÅ¼ny od platformy i napisany w czystym Pythonie, wiÄ™c jest
+teoretycznie niezaleÅ¼ny od ÅºrÃ³dÅ‚a danych (jako Å¼e IMDb dostarcza dwa
+lub trzy rÃ³Å¼ne interfejsy do ich bazy). IMDbPY jest przeznaczony
+gÅ‚Ã³wnie dla programistÃ³w chcÄ…cych tworzyÄ‡ programy przy uÅ¼yciu tego
+pakietu, ale zaÅ‚Ä…czonych jest takÅ¼e kilka przykÅ‚adowych skryptÃ³w
+przydatnych dla zwykÅ‚ych uÅ¼ytkownikÃ³w.
 
 %prep
 %setup -q -n IMDbPY-%{version}
