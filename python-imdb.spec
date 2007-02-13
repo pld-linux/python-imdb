@@ -1,7 +1,7 @@
 %define 	module	imdb
 
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
-Summary(pl.UTF-8):   Pakiet Pythona do uzyskiwania i zarządzania danymi z bazy danych filmów IMDb
+Summary(pl.UTF-8):	Pakiet Pythona do uzyskiwania i zarządzania danymi z bazy danych filmów IMDb
 Name:		python-%{module}
 Version:	2.6
 Release:	1
