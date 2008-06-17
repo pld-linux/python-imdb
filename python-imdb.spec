@@ -10,6 +10,8 @@ Group:		Development/Languages/Python
 Source0:	http://dl.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
 # Source0-md5:	914b5f23c8e3649cb747c9fe8522c544
 URL:		http://imdbpy.sourceforge.net/
+BuildRequires:	python-devel
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
