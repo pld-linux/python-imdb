@@ -3,12 +3,12 @@
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
 Summary(pl.UTF-8):	Pakiet Pythona do uzyskiwania i zarządzania danymi z bazy danych filmów IMDb
 Name:		python-%{module}
-Version:	3.8
-Release:	2
+Version:	4.3
+Release:	1
 License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://dl.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
-# Source0-md5:	da982f60de30883c224fe81d7b1dfe2e
+# Source0-md5:	faf32115d861dc8a8de6b584dceb488d
 URL:		http://imdbpy.sourceforge.net/
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
@@ -58,18 +58,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/AUTHOR.txt docs/CONTRIBUTORS.txt docs/CREDITS.txt docs/Changelog.txt docs/DISCLAIMER.txt docs/README.* docs/TODO.txt
 %attr(755,root,root) %{_bindir}/*
+%{py_sitedir}/*.egg-info
 %dir %{py_sitedir}/%{module}
 %{py_sitedir}/%{module}/*.py[co]
+%dir %{py_sitedir}/%{module}/locale
+%{py_sitedir}/%{module}/locale/*.py[co]
 %dir %{py_sitedir}/%{module}/parser
 %{py_sitedir}/%{module}/parser/*.py[co]
 %dir %{py_sitedir}/%{module}/parser/http
 %{py_sitedir}/%{module}/parser/http/*.py[co]
-%dir %{py_sitedir}/%{module}/parser/common
-%{py_sitedir}/%{module}/parser/common/*.py[co]
-%attr(755,root,root) %{py_sitedir}/%{module}/parser/common/cutils.so
-%dir %{py_sitedir}/%{module}/parser/local
-%{py_sitedir}/%{module}/parser/local/*.py[co]
+%dir %{py_sitedir}/%{module}/parser/http/bsouplxml
+%{py_sitedir}/%{module}/parser/http/bsouplxml/*.py[co]
 %dir %{py_sitedir}/%{module}/parser/mobile
 %{py_sitedir}/%{module}/parser/mobile/*.py[co]
 %dir %{py_sitedir}/%{module}/parser/sql
 %{py_sitedir}/%{module}/parser/sql/*.py[co]
+%attr(755,root,root) %{py_sitedir}/%{module}/parser/sql/*.so
