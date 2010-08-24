@@ -1,17 +1,21 @@
 %define 	module	imdb
-
 Summary:	Python package useful to retrieve and manage the data of the IMDb movie database
 Summary(pl.UTF-8):	Pakiet Pythona do uzyskiwania i zarządzania danymi z bazy danych filmów IMDb
 Name:		python-%{module}
-Version:	4.3
-Release:	2
+Version:	4.6
+Release:	1
 License:	GPL
 Group:		Development/Languages/Python
-Source0:	http://dl.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
-# Source0-md5:	faf32115d861dc8a8de6b584dceb488d
+Source0:	http://downloads.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
+# Source0-md5:	876d4cd041fa23633e3637c22bf95622
 URL:		http://imdbpy.sourceforge.net/
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
+Requires:	python-lxml
+# SQLAlchemy or SQLObject
+Suggests:	python-SQLAlchemy
+Suggests:	python-SQLObject
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,26 +42,57 @@ przydatnych dla zwykłych użytkowników.
 %prep
 %setup -q -n IMDbPY-%{version}
 
+rm docs/GPL.txt
+
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__python} setup.py install \
-	--root=$RPM_BUILD_ROOT \
 	--optimize=2 \
-	--install-purelib=%{py_sitedir}
+	--install-purelib=%{py_sitedir} \
+	--root=$RPM_BUILD_ROOT
 
-find $RPM_BUILD_ROOT%{py_sitedir} -type f -name "*.py" | xargs rm
-	
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
+mv $RPM_BUILD_ROOT{%{_prefix}%{_sysconfdir},%{_sysconfdir}}/imdbpy.cfg
+
+# fix in setup.py instead
+install -d $RPM_BUILD_ROOT%{_datadir}/locale/{en,it,tr,it}/LC_MESSAGES
+rm $RPM_BUILD_ROOT%{_prefix}/imdb/locale/*.{pot,po}
+mv $RPM_BUILD_ROOT{%{_prefix}/imdb/locale,%{_datadir}/locale}/en/LC_MESSAGES/imdbpy.mo
+mv $RPM_BUILD_ROOT{%{_prefix}/imdb/locale,%{_datadir}/locale}/it/LC_MESSAGES/imdbpy.mo
+mv $RPM_BUILD_ROOT{%{_prefix}/imdb/locale,%{_datadir}/locale}/tr/LC_MESSAGES/imdbpy.mo
+
+# we use %doc
+rm -rf $RPM_BUILD_ROOT%{_prefix}/doc
+
+# .py ext is ugly
+for a in $RPM_BUILD_ROOT%{_bindir}/*.py; do
+	mv $a ${a%.py}
+done
+
+# add suffix to commands
+for a in $RPM_BUILD_ROOT%{_bindir}/get_* $RPM_BUILD_ROOT%{_bindir}/search_*; do
+	d=${a%/*}
+	f=${a##*/}
+
+	mv $a $d/imdbpy_$f
+done
+
+%find_lang imdbpy
+
+%py_postclean
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f imdbpy.lang
 %defattr(644,root,root,755)
-%doc docs/AUTHOR.txt docs/CONTRIBUTORS.txt docs/CREDITS.txt docs/Changelog.txt docs/DISCLAIMER.txt docs/README.* docs/TODO.txt
-%attr(755,root,root) %{_bindir}/*
+%doc docs/*.txt docs/README.????* docs/goodies
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/imdbpy.cfg
+%attr(755,root,root) %{_bindir}/imdbpy_*
+%attr(755,root,root) %{_bindir}/imdbpy2sql
 %{py_sitedir}/*.egg-info
 %dir %{py_sitedir}/%{module}
 %{py_sitedir}/%{module}/*.py[co]
