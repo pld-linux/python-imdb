@@ -45,12 +45,11 @@ przydatnych dla zwykłych użytkowników.
 rm docs/GPL.txt
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install \
-	--optimize=2 \
+%py_install \
 	--install-purelib=%{py_sitedir} \
 	--root=$RPM_BUILD_ROOT
 
