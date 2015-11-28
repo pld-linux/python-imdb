@@ -3,7 +3,7 @@ Summary:	Python package useful to retrieve and manage the data of the IMDb movie
 Summary(pl.UTF-8):	Pakiet Pythona do uzyskiwania i zarządzania danymi z bazy danych filmów IMDb
 Name:		python-%{module}
 Version:	4.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://downloads.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
