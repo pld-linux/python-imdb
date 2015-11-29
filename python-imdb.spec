@@ -11,7 +11,7 @@ Source0:	http://downloads.sourceforge.net/imdbpy/IMDbPY-%{version}.tar.gz
 URL:		http://imdbpy.sourceforge.net/
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	python-lxml
 # SQLAlchemy or SQLObject
 Suggests:	python-SQLAlchemy
